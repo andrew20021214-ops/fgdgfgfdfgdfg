@@ -36,7 +36,7 @@ const USERS = [
         expiresAt: "2026-12-31T23:59:59Z",
         isBanned: false,
         banReason: "",
-        isDeleted: true,
+        isDeleted: false,
         deleteReason: "test",
         HWID: "",
         warns: "2/3",
