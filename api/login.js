@@ -124,9 +124,9 @@ module.exports = async (req, res) => {
 
     // Update Config
     const APP_CONFIG = {
-        version: "1.0.2",
+        version: "1.0.3",
         link: "https://github.com/andrew20021214-ops/Potassium1.0.2/releases/download/Potassium1.0.2/Potassium1.0.2.zip",
-        changelog: "StreamProof: Invisible for OBS/Discord|Real Auto-Update system|Fixed UI bugs & Improved performance|New login sync with file database"
+        changelog: "StreamProof: Invisible for OBS/Discord|Real Auto-Update system|Fixed UI bugs & Improved performance|New login sync with file database, fixed dragging"
     };
 
     // Handle Version Check (GET)
