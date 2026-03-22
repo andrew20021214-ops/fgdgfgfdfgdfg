@@ -94,9 +94,9 @@ const USERS = [
 },
     {
         username: "rhain",
-        passwordHash: "$2a$10$y6yyJNhcRFAz53h25NaPUeGJyzkvElVDueJLSTTeYhe9mIh5QbVc6",
+        passwordHash: "$2a$10$kE07KEfKSFGRCPRCIPbsxeHl6u8TEUSO48Q.KSfvvntLpWv9WbCWq",
         isBought: true,
-        expiresAt: "2026-03-23T16:21:00Z",
+        expiresAt: "2026-03-25T08:46:00Z",
         isBanned: false,
         banReason: "",
         isDeleted: false,
