@@ -36,7 +36,7 @@ const USERS = [
         expiresAt: "2026-12-31T23:59:59Z",
         isBanned: false,
         banReason: "",
-        isDeleted: false,
+        isDeleted: true,
         deleteReason: "test",
         HWID: "",
         warns: "2/3",
@@ -91,6 +91,17 @@ const USERS = [
         isDeleted: false,
         deleteReason: "",
         HWID: "f29be8a321186e8d5a94ea85a037cb3c6798bd08b34077b6fd06b57167b8803d"
+},
+    {
+        username: "rhain",
+        passwordHash: "$2a$10$y6yyJNhcRFAz53h25NaPUeGJyzkvElVDueJLSTTeYhe9mIh5QbVc6",
+        isBought: true,
+        expiresAt: "2026-03-23T16:21:00Z",
+        isBanned: false,
+        banReason: "",
+        isDeleted: false,
+        deleteReason: "",
+        HWID: "fac0c302cd1aa5f610c0e3e384fc5635545a8d6d6a0234691431edb563e4cb61"
 }
 ];
 
@@ -103,7 +114,8 @@ module.exports = async (req, res) => {
     // Update Config
     const APP_CONFIG = {
         version: "1.0.2",
-        link: "https://github.com/andrew20021214-ops/Potassium1.0.2/releases/download/Potassium1.0.2/Potassium1.0.2.zip"
+        link: "https://github.com/andrew20021214-ops/Potassium1.0.2/releases/download/Potassium1.0.2/Potassium1.0.2.zip",
+        changelog: "StreamProof: Invisible for OBS/Discord|Real Auto-Update system|Fixed UI bugs & Improved performance|New login sync with file database"
     };
 
     // Handle Version Check (GET)
@@ -117,7 +129,7 @@ module.exports = async (req, res) => {
     }
 
     if (req.method !== 'POST') {
-        return res.status(405).send({ error: '404 not found' });
+        return res.status(405).send({ error: '67 project fatality' });
     }
 
     const { username, password, hwid, pcUsername } = req.body;
