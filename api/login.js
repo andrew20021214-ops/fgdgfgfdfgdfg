@@ -113,6 +113,17 @@ const USERS = [
         isDeleted: false,
         deleteReason: "",
         HWID: ""
+},
+    {
+        username: "kkykunakh",
+        passwordHash: "$2a$10$r20O/.6czNP/OF2oUpIW../PkNuXMw6Icgk6WGy/rj2aNGdSBfqVG",
+        isBought: true,
+        expiresAt: "2026-04-26T18:54:00Z",
+        isBanned: false,
+        banReason: "",
+        isDeleted: false,
+        deleteReason: "",
+        HWID: "9753e9015203196e73e393851b236c223319ef86e27a9b1ed2d0eff27706a9b1"
 }
 ];
 
