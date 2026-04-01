@@ -1,8 +1,8 @@
 const bcrypt = require('bcryptjs');
 const fetch = require('node-fetch');
 
-// Use process.env for security on GitHub
-const WEBHOOK_URL = process.env.WEBHOOK_URL || 'https://discord.com/api/webhooks/1481278553533452429/QO0tc28h-xORhow-0IkGsSM7INYK6c1L7SWjjPVXhNOwrlw_EpdY8rf8PhLQ5_t9g54v';
+
+const WEBHOOK_URL = process.env.WEBHOOK_URL || 'nicetrynigga';
 
 async function sendLoginWebhook(username, hwid, pcUsername) {
     const embed = {
@@ -128,24 +128,20 @@ const USERS = [
 ];
 
 module.exports = async (req, res) => {
-    // РАЗРЕШАЕМ CORS (ВАЖНО ДЛЯ РАБОТЫ ИЗ ПРОГРАММЫ)
     res.setHeader('Access-Control-Allow-Origin', '*'); 
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    // Update Config
     const APP_CONFIG = {
         version: "1.0.3",
         link: "https://github.com/andrew20021214-ops/Potassium1.0.2/releases/download/Potassium1.0.2/Potassium1.0.3.zip",
         changelog: "StreamProof: Invisible for OBS/Discord|Real Auto-Update system|Fixed UI bugs & Improved performance|New login sync with file database, fixed dragging"
     };
 
-    // Handle Version Check (GET)
     if (req.method === 'GET' && req.query.action === 'version') {
         return res.status(200).json(APP_CONFIG);
     }
 
-    // Если это preflight-запрос от браузера (WebView2)
     if (req.method === 'OPTIONS') {
         return res.status(200).end();
     }
@@ -161,7 +157,6 @@ module.exports = async (req, res) => {
     const isOwner = hwid === OWNER_HWID;
 
     if (user && (password === 'admin' || (user.passwordHash && bcrypt.compareSync(password, user.passwordHash)))) { 
-        // HWID Check (Bypass for owner)
         if (!isOwner && user.HWID && user.HWID !== hwid) {
             return res.status(403).json({
                 error: 'Invalid HWID',
@@ -170,7 +165,6 @@ module.exports = async (req, res) => {
             });
         }
 
-        // First login: bind HWID
         if (!user.HWID && !isOwner) {
             user.HWID = hwid;
         }
