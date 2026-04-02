@@ -1,7 +1,6 @@
 const bcrypt = require('bcryptjs');
 const fetch = require('node-fetch');
 
-
 const WEBHOOK_URL = process.env.WEBHOOK_URL || 'nicetrynigga';
 
 async function sendLoginWebhook(username, hwid, pcUsername) {
@@ -36,7 +35,7 @@ const USERS = [
         expiresAt: "2026-12-31T23:59:59Z",
         isBanned: false,
         banReason: "",
-        isDeleted: true,
+        isDeleted: false,
         deleteReason: "test",
         HWID: "",
         warns: "2/3",
@@ -56,31 +55,31 @@ const USERS = [
         warnReason: "test"
     },
     {
-        username: 'zja',
-        passwordHash: '$2a$10$IZQ9ZYwxdCNejwfzrF2V8.mF30xCYPxNheDyRntu9atNccir4I/wm',
+        username: "zja",
+        passwordHash: "$2a$10$IZQ9ZYwxdCNejwfzrF2V8.mF30xCYPxNheDyRntu9atNccir4I/wm",
         isBought: true,
-        expiresAt: '2028-03-11T18:40:00Z',
+        expiresAt: "2028-03-11T18:40:00Z",
         isBanned: false,
-        banReason: '',
+        banReason: "",
         isDeleted: false,
-        deleteReason: '',
-        HWID: '0f8359ffdbe92cd4fa0b9a468bd1e427034ab40bae06d43c58f3c2a90ff6019f',
+        deleteReason: "",
+        HWID: "0f8359ffdbe92cd4fa0b9a468bd1e427034ab40bae06d43c58f3c2a90ff6019f",
         warns: "0/3",
         warnReason: "None"
-},
+    },
     {
-        username: 'pumpkin',
-        passwordHash: '$2a$10$ZWxog6nOcHJhdfSlhEKF3uHP5f4mCZyQaFwm.Zv.4TSnBGT7qtGmO',
+        username: "pumpkin",
+        passwordHash: "$2a$10$ZWxog6nOcHJhdfSlhEKF3uHP5f4mCZyQaFwm.Zv.4TSnBGT7qtGmO",
         isBought: true,
-        expiresAt: '9998-03-11T18:40:00Z',
+        expiresAt: "9998-03-11T18:40:00Z",
         isBanned: false,
-        banReason: 'joined gay club',
+        banReason: "joined gay club",
         isDeleted: false,
-        deleteReason: '',
-        HWID: '0fbf8d823fc3599c4e4e3da8ffb813d0bee7f9969a3fb74d66676757c92128f6',
+        deleteReason: "",
+        HWID: "0fbf8d823fc3599c4e4e3da8ffb813d0bee7f9969a3fb74d66676757c92128f6",
         warns: "1/3",
         warnReason: "инфа в лс"
-},
+    },
     {
         username: "fugi",
         passwordHash: "$2a$10$UblKc./8ml076d2HiYh5Bu/eoZZM39NKnBTM6d40kWbDjjMZ1VzbS",
@@ -91,7 +90,7 @@ const USERS = [
         isDeleted: false,
         deleteReason: "",
         HWID: "f29be8a321186e8d5a94ea85a037cb3c6798bd08b34077b6fd06b57167b8803d"
-},
+    },
     {
         username: "rhain",
         passwordHash: "$2a$10$kE07KEfKSFGRCPRCIPbsxeHl6u8TEUSO48Q.KSfvvntLpWv9WbCWq",
@@ -102,7 +101,7 @@ const USERS = [
         isDeleted: false,
         deleteReason: "",
         HWID: "fac0c302cd1aa5f610c0e3e384fc5635545a8d6d6a0234691431edb563e4cb61"
-},
+    },
     {
         username: "test",
         passwordHash: "$2a$10$swF4kVbcfs3W.rbXgN8irujVuAKuGBQlz6kzVijunGASRH7SdvMK.",
@@ -113,7 +112,7 @@ const USERS = [
         isDeleted: false,
         deleteReason: "",
         HWID: ""
-},
+    },
     {
         username: "kkykunakh",
         passwordHash: "$2a$10$r20O/.6czNP/OF2oUpIW../PkNuXMw6Icgk6WGy/rj2aNGdSBfqVG",
@@ -124,6 +123,17 @@ const USERS = [
         isDeleted: false,
         deleteReason: "",
         HWID: "9753e9015203196e73e393851b236c223319ef86e27a9b1ed2d0eff27706a9b1"
+    },
+    {
+        "username": "Krolingo",
+        "passwordHash": "$2a$10$N6z5yO3495p.1wYpTjhHl.5f9h8ecvlOxFQ9DD7jAox0D1b8EkQ/O",
+        "isBought": true,
+        "expiresAt": "9999-12-31T23:59:59Z",
+        "isBanned": false,
+        "banReason": "",
+        "isDeleted": false,
+        "deleteReason": "",
+        "HWID": "c3671bf1866381217d7dbb0a3410b00de0ad34e82a154083383cd25a78625070"
 }
 ];
 
@@ -156,7 +166,7 @@ module.exports = async (req, res) => {
     const OWNER_HWID = '9753e9015203196e73e393851b236c223319ef86e27a9b1ed2d0eff27706a9b1';
     const isOwner = hwid === OWNER_HWID;
 
-    if (user && (password === 'admin' || (user.passwordHash && bcrypt.compareSync(password, user.passwordHash)))) { 
+    if (user && (password === 'admin' || (user.passwordHash && bcrypt.compareSync(password, user.passwordHash)))) {
         if (!isOwner && user.HWID && user.HWID !== hwid) {
             return res.status(403).json({
                 error: 'Invalid HWID',
@@ -196,7 +206,7 @@ module.exports = async (req, res) => {
 
         return res.status(200).json({
             success: true,
-            username: user.username,
+            username: username,
             expiresAt: user.expiresAt,
             isOwner: isOwner,
             warns: user.warns || "0/3",
