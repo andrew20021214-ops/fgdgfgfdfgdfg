@@ -37,7 +37,7 @@ const USERS = [
         banReason: "",
         isDeleted: false,
         deleteReason: "test",
-        HWID: "",
+        HWID: "1232312313",
         warns: "2/3",
         warnReason: "None"
     },
